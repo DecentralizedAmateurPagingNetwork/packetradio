@@ -1,0 +1,32 @@
+Hallo OMs/YLs!
+Hier der neue m_filter.prg, der auch Nachrichten der Rubrik P auswertet.
+
+!!!!! Bitte unbedingt die "m_filter.h" aendern !!!!!!!!!!
+
+Laeuft innerhalb der Baycom-Mailbox und der DP-Box!
+
+Die Dateien "m_filter.h", "Makefile" und "m_filter.cpp" in ein Verzeichnis
+kopieren und "make" eingeben. Es sollte jetzt (hoffentlich) ein "m_filter.prg"
+rauskommen.
+Diesen "m_filter.prg" dann in das richtige Verzeichnis kopieren (Siehe Doku
+der jeweiligen Box!) und evtl. die config der Box anpassen!
+
+Wird "DEBUG" in der "m_filter.h" definiert, bleibt nach abarbeiten der
+Import-Nachricht eine "Export-Nachricht" im "Import-Verzeichnis" vom
+Pager-User-Interface zurueck. Hier kann man sehen, ob evtl. Fehler aufgetreten
+sind.
+
+Kepler-Filer:
+Im Funkruf-Benutzer-Interface besteht die Moeglichkeit AOS und LOS von
+Satelliten berechnen zu lassen und diese dann auf dem Pager auszugeben.
+Wichtig sind hierbei aktuelle Kepler-Daten. Der m_filer.prg kann diese
+Kepler-Daten automatisch aus eingehenden Mails erkennen und dann kopieren.
+Hierzu ist in der m_filter.h das "#define KEPLER" zu setzen und dann Absender-
+Call, Titel und Pfadangabe evtl. anzupassen. Gross- und Kleinschreibung
+beachten!!!
+
+Bei Fragen oder Problemen bitte eine Mail an mich: dh6bb@db0whv.#nds.deu.eu
+oder e-Mail: dh6bb@darc.de
+
+73 de DH6BB
+Jens
