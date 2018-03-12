@@ -28,6 +28,7 @@
 /*                   mit ausgewertet.                                */
 /* 15.10.2006 DH6BB  OpenBCM 1.07b1 hat das Format der Mail ein      */
 /*                   klein wenig geaendert. Tnx Info DG8NGN/DL9SAU   */
+/* 12.03.2018 DH3WR  Started with DAPNET support implementation      */
 /*********************************************************************/
 
 #include "m_filter.h"
@@ -288,29 +289,29 @@ void Funkruf(int MailorMess)
 //********************************************************************
 void Sende(char FunkrufText[])
 {
-  FILE *FunkrufDatei=NULL;
-  char Datei[255]="\0";
- 
-  strcpy(Datei, ImportDir);
-#ifdef DEBUG  
-  strcat(Datei, "IMPORT.EXPORT.");
-#else
-  strcat(Datei, "IMPORT.NO_EXPORT.");
-#endif
-  strcat(Datei, basename(Dateiname));
+  # Example:
+  # curl -H "Content-Type: application/json" -X POST -u dl1acb:sehrgeheimespasswort -d '{ "text": "DL1ABC: Das ist eine Sendung über die REST-API", "callSignNames": ["dh1xyz"], "transmitterGroupNames": ["dl-bw"], "emergency": false }' http://dapnet.afu.rwth-aachen.de/api/calls
+  # Maybe nicer implementation with https://curl.haxx.se/libcurl/c/example.html
+  
+  # Buffer for command line command
+  char curl_command[2000]="\0";
+  
+  # Build up the curl command and add dynamic content
+  strcpy(curl_command, "curl -H \"Content-Type: application/json\" -X POST -u ");
+  strcat(curl_command, DAPNET_NAME);
+  strcat(curl_command, ":");
+  strcat(curl_command, DAPNET_PASSWORD);
+  strcat(curl_command, " -d '{ \"text": \"");
+  strcat(curl_command, TO);
+  strcat(curl_command, ": ");
+  strcat(curl_command, FunkrufText);
+  strcat(curl_command, "\", \"callSignNames\": [\"");
+  strcat(curl_command, tolower(TO);
+  strcat(curl_command, "\"], \"transmitterGroupNames\": [\"all\"], \"emergency\": false }' ");
+  strcat(curl_command, DAPNET_URL);
 
-  if ((FunkrufDatei=fopen(Datei,"w"))!=NULL)
-  {
-         fprintf(FunkrufDatei, "%s\n",Boxcall);
-         fprintf(FunkrufDatei, "PAGE %s %s\n",TO,FunkrufText);
-	 fclose(FunkrufDatei);
-  }
-  else
-  {
-#ifdef DEBUG 
-       printf("Konnte Funkruf nicht speichern");
-#endif
-  }
+  # Execute the command
+  system(curl_command);
 }
 
 

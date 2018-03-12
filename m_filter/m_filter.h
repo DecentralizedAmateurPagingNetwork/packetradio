@@ -11,8 +11,12 @@
 //#define DEBUG
 //#define BCM                   // <== Fuer die BayBox die "//" entfernen!!
 #define Boxcall    "DB0WHV"	// <== A E N D E R N !!!  (ohne SSID)
-#define ImportDir  "/usr/local/funkruf/import/"
 #define Mailinfo   "/usr/local/funkruf/lib/mailinfo"
+
+#DAPNET
+#define DAPNET_URL			http://dapnet.afu.rwth-aachen.de/api/calls
+#define DAPNET_NAME			bcm
+#define DAPNET_PASSWORD		
 
 #define KEPLER
 #ifdef KEPLER
